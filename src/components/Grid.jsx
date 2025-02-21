@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Grid({ gridSize }) {
   const [isDrawing, setIsDrawing] = useState(false);
   const [isErasing, setIsErasing] = useState(false);
   const [coloredCells, setColoredCells] = useState(new Map());
   const [color, setColor] = useState("#000000");
-
+  const navigate= useNavigate();
   const handleMouseDown = (index) => {
     setIsDrawing(true);
     setColoredCells((prev) => {
@@ -27,7 +28,7 @@ function Grid({ gridSize }) {
 
   const handleMouseUp = () => setIsDrawing(false);
   const toggleEraser = () => setIsErasing(!isErasing);
-  const restart = () => window.location.reload();
+  const restart = () => navigate("/");
 
   return (
     <div className="container" onMouseUp={handleMouseUp}>
